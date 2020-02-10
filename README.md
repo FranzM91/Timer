@@ -1,2 +1,1 @@
-# Timer
- Set timer... for Church 
+This project is created for Church Adventist 7 Day...

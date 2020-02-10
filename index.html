@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Church 21</title>
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.css">
+        <link href="style.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700,100" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:300,700,900,500" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.0.8/typicons.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/css/pushy.css">
+        <link rel="stylesheet" href="assets/css/masonry.css">
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" href="assets/css/magnific-popup.css">
+        <script>
+            var cronometro;
+            function carga()
+            {
+                var x = document.getElementById("action");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+                contador_s =00;
+                contador_m = document.getElementById("minuts").value;
+                timer = document.getElementById("min");
+                if(contador_m < 10) {
+                    contador_m = "0" +contador_m;
+                }
+                timer.innerHTML = contador_m + ":" +contador_s;
+                cronometro = setInterval(
+                function(){
+                    if(contador_s==0)
+                    {
+                        if(contador_m == 0 && contador_s == 0)
+                        {
+                            clearInterval(cronometro);
+                            contador_s = 00;
+                            contador_m = 00;
+                            var video = document.getElementById("videoChurch");
+                            var content = document.getElementById("home");
+                            if (video.style.display === "none") {
+                                video.style.display = "block";
+                                content.style.display = "none";
+                            } else {
+                                video.style.display = "none";
+                            }
+                            playPause();
+                        }
+                        contador_s = 60;
+                        if(contador_m > 0) {
+                            contador_m--;
+                        }
+                        if(contador_m < 10 && contador_m > 0) {
+                            contador_m = "0" +contador_m;
+                        }
+                        timer.innerHTML = contador_m + ":" +contador_s;
+                        if(contador_m == 0)
+                        {
+                            contador_m = 00;
+                        }
+                    }
+                    if(contador_s < 10) {
+                        contador_s = "0" +contador_s;
+                    }
+                    timer.innerHTML = contador_m + ":" +contador_s;
+                    contador_s--;
+                }
+                ,1000);
+            }
+        </script>
+    </head>
+<body style="background-color: black;">
+    <header id="home">
+        <section>
+            <div class="col-md-12">
+                <div class="col-md-8">
+                    <div class="jumbotron" style="padding-top: 10%; text-align: left;">
+                        <h1> 
+                            <img src="https://img.icons8.com/cute-clipart/256/000000/facebook.png" style="width: 12%; margin-top: -2%;">
+                            <strong onclick="carga()" style="color: #3b747d">/Iglesia21septiembre</strong>
+                            <div id="action">
+                                <input type="input" id="minuts" style="color: black; width: 45%; border-radius: 40px" placeholder="Example 15 min"/>
+                                <button class="btn btn-danger" onclick="carga()">Start</button>
+                            </div>
+                        </h1>
+                    </div>
+                </div>
+                <div class="col-md-4 jumbotron" style="text-align: right; margin-top: 20%;">
+                    <h2 style="margin-right: 2%;">Iniciamos en<br></h2>
+                    <div class="col-md-12">
+                        <div class="col-md-11" style="text-align: right; margin-top: -7%;">
+                            <h1><small id="min" style="font-size: 90%;"></small></h1>
+                        </div>
+                        <div class="col-md-1"><h3>min</h3></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container-fluid">
+            <div class="container">
+            </div>
+        </div>
+    </header>
+    <div class="container-fuild" id="videoChurch" style="display: none;">
+        <section>
+            <video id="churchVideo" preload="auto" volume="50" style="width: 98%;">
+                <source src="church.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>         
+        </section>
+    </div>
+    <script>
+        var myVideo = document.getElementById("churchVideo"); 
+        function playPause() { 
+            if (myVideo.paused) 
+                myVideo.play(); 
+            else 
+                myVideo.pause(); 
+        }
+        function makeBig() {
+            myVideo.width = 600;
+        }
+        function makeSmall() { 
+            myVideo.width = 320; 
+        }
+        function makeNormal() { 
+            myVideo.width = 480;
+        }
+        </script>
+</body>
+</html>
